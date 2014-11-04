@@ -8,7 +8,6 @@
 
       go: function(e) {
         var e = e || window.event;
-        cursor.style.display = 'inline-block';
         cursor.style.left = e.clientX - 450 + 'px';
         cursor.style.top = e.clientY - 245 + 'px';
       }
