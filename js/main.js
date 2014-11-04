@@ -1,27 +1,23 @@
-;(function($, window, document) {
+;(function(window, document) {
+  var follower = (function() {
 
-	var wH,
-			$cursor = $('#cursor'),
-			$html   = $('html'),
-			$window = $(window);
+    return {
+      init: function() {
+        var cursor = document.getElementById('#cursor')
+      },
 
-	$window.resize(function() {
-		var wH = $window.height();
-	});
+      go: function(e) {
+        var e = e || window.event;
+        cursor.style.display = 'inline-block';
+        cursor.style.left = e.clientX - 450 + 'px';
+        cursor.style.top = e.clientY - 245 + 'px';
+      }
+    };
+  })();
 
-  $html.mouseenter(function(){
-      $cursor.show();
-      return false;
-  });
+  window.onload = function() {
+    follower.init();
+    document.documentElement.onmousemove = follower.go
+  }
 
-  $html.mousemove(function(e){
-  		var x = e.clientX,
-  				y = e.clientY;
-
-      $cursor.css({
-      	left: x - 450,
-      	top: y - 245
-      });
-  });
-
-})(jQuery, window, document, undefined);
+})(window, document);
